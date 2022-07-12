@@ -147,6 +147,8 @@
     padding: 2px;
     border: .1px solid black;
     margin: 10px; }
+  .main-section-1 .blocked {
+    display: none; }
   .nav {
     position: sticky;
     bottom: 0;
