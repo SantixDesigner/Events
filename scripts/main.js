@@ -238,6 +238,7 @@ for (const Input of Inputs){
 let s1 = form.firstElementChild.firstElementChild.firstElementChild.nextElementSibling;
 s1.addEventListener("click", funcion5);
 function funcion5(){
+    form.classList.add('blocked');
     let producto;
     for (let i = 0; i<productsCPU.length; i++){
         producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
@@ -248,11 +249,11 @@ function funcion5(){
             i--;
         }
     }
-    form.classList.add('blocked');
 }
 let s2 = form.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
 s2.addEventListener("click",funcion20);
 function funcion20(){
+    form.classList.add('blocked');
     let producto;
     for (let i = 0; i<productsCPU.length; i++){
         producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
@@ -263,7 +264,7 @@ function funcion20(){
         i--;
         }
     }
-    form.classList.add('blocked');
+    
 }
 
 
