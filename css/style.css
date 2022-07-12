@@ -23,21 +23,21 @@
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto; }
+    .index-main .main-section-1 .blocked {
+      display: none; }
     .index-main .main-section-1 form {
       border: .1px solid black;
       margin-bottom: 5px; }
-    .index-main .main-section-1 div .div-a {
-      margin: 5px;
-      background-color: green;
-      text-align: center;
-      border-radius: 20px;
-      max-width: 200px;
-      margin-left: auto;
-      margin-right: auto;
-      border: none; }
-      .index-main .main-section-1 div .div-a a {
-        color: white;
-        text-decoration: none; }
+      .index-main .main-section-1 form .div-a {
+        display: flex;
+        justify-content: center;
+        padding: 0 auto; }
+        .index-main .main-section-1 form .div-a button {
+          border: 0;
+          background-color: green;
+          color: white;
+          width: 50%;
+          border-radius: 10px; }
   .index-main #main-section-2 {
     grid-area: sect2;
     display: flex;
@@ -63,15 +63,17 @@
         border: .1px solid black;
         font-size: 20px;
         font-weight: bold; }
-      .index-main #main-section-2 div button {
-        margin: 0 auto;
-        border: 0;
-        background-color: black;
-        color: white;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        width: 100%;
-        max-width: 150px; }
+      .index-main #main-section-2 div .nodisplay {
+        display: none; }
+    .index-main #main-section-2 .div-a button {
+      margin: 0 auto;
+      border: 0;
+      background-color: black;
+      color: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 150px; }
   .index-main .products1 {
     text-align: center;
     grid-area: products1;
