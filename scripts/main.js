@@ -1,38 +1,31 @@
-let precio;
-let precioN = 0;
-let cosasNombres = "";
-let fueraUndefined = "";
+let pricesS;
+let pricesSN = 0;
+let namesProducts = "";
+let allNames = "";
 let a = document.createElement("button");
 let main = document.getElementById('main');
-let boton = document.createElement('button');
-let cpu;
-const newDom = (precio,cosasNombres, precioN, a, divProduct, fueraUndefined, boton) =>{
+let button = document.createElement('button');
+const newDom = (pricesS,namesProducts, pricesSN, a, divProduct, allNames, button) =>{
     let enlace;
     for (const productoS of componentArray2){
-                if (productoS.marca == 'AMD'){
-                    enlace = "./assets/ryzenej.jpg";
-                } else if (productoS.marca == 'Intel'){
-                    enlace = "./assets/intel.jpeg";
-                }
+        if (productoS.marca == 'AMD'){
+            enlace = "./assets/ryzenej.jpg";
+        } else if (productoS.marca == 'Intel'){
+            enlace = "./assets/intel.jpeg";
+        }
         let producto = document.createElement("div");
-        cpu = document;
-        
         producto.innerHTML = `<img src = "${enlace}">
         <h2>${productoS.nameS}</h2>
-        <span>Precio: </span>
+        <span>pricesS: </span>
         <span>${productoS.price}</span>
         <p class = "nodisplay">marca${productoS.marca}</p>`;
-        cpu += producto;
         a = document.createElement('button');
         a.innerHTML = `Comprar`;
         const funcion = e =>{
-            precio = e.currentTarget.previousElementSibling.previousElementSibling.innerHTML;
-            cosasNombres = e.currentTarget.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
-            console.log(cosasNombres);
-            fueraUndefined += cosasNombres + ", ";
-            console.log(fueraUndefined);
-            precioN += parseInt(precio);
-            console.log(precioN);
+            pricesS = e.currentTarget.previousElementSibling.previousElementSibling.innerHTML;
+            namesProducts = e.currentTarget.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+            allNames += namesProducts + ", ";
+            pricesSN += parseInt(pricesS);
             producto.remove();
         }
         a.addEventListener("click", funcion);
@@ -40,20 +33,22 @@ const newDom = (precio,cosasNombres, precioN, a, divProduct, fueraUndefined, bot
         divProduct.append(producto);
     }
     const funcion2 = e =>{
-        iva(fueraUndefined, precioN);
-        boton.remove();
+        iva(allNames, pricesSN);
+        button.remove();
+        const x = new Date();
+        alert("Thank you for visit TecnoStore in the day: "+x.getDate()+"/"+(x.getMonth()+1)+"/"+x.getFullYear()); //Genera una fecha en base al día actual
     }
-    boton.addEventListener('click',funcion2);
+    button.addEventListener('click',funcion2);
 }
 const CPUS = () =>{ //Esto genera la lista correspondiente a si es AMD o es Intel
     for (const nombre of productsCPU){
         let nombres = nombre;
         componentArray2.push(nombres);
     }
-    boton.className = "boton";
-    boton.innerHTML = `Terminar`;
-    main.append(boton);
-    newDom(precio,cosasNombres,precioN,a,divProduct,fueraUndefined, boton);
+    button.className = "button";
+    button.innerHTML = `Terminar`;
+    main.append(button);
+    newDom(pricesS,namesProducts,pricesSN,a,divProduct,allNames, button);
 }
 const iva=(nameS,price)=>{
     let iva = 0.21;
@@ -87,7 +82,34 @@ const createComponents = () =>{
         }while(booleanS != "NO");
     }
 }
-
+const eliminarProducto = () =>{
+    let button1 = form.firstElementChild.firstElementChild.firstElementChild.nextElementSibling;
+    button1.addEventListener("click", funcion5);
+    function funcion5(){
+        form.classList.add('blocked');
+        let producto;
+        for (let i = 0; i<productsCPU.length; i++){
+            producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
+            if (producto.lastChild.previousSibling.textContent == "marcaIntel"){
+                producto.remove();
+                i--;
+            }
+        }
+    }
+    let button2 = form.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
+    button2.addEventListener("click",funcion20);
+    function funcion20(){
+        form.classList.add('blocked');
+        let producto;
+        for (let i = 0; i<productsCPU.length; i++){
+            producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
+            if (producto.lastChild.previousSibling.textContent == "marcaAMD"){
+                producto.remove();
+                i--;
+            }
+        }
+    }
+}
 class Componente{
     constructor(name,price) {
         this.name = name;
@@ -102,11 +124,6 @@ class Componente{
          this.stock = stock;
     }
 }
-const products = [
-    {nameS:"INTEL", stock: true},
-    {nameS:"AMD", stock: true},
-    {nameS:"NVIDIA", stock: false}
-]; //Estos son las marcas
 const productsCPU = [
     {nameS: "i3 9100F", price: 2000, marca: "Intel"},
     {nameS: "i5 9400F", price: 2500, marca: "Intel"},
@@ -128,148 +145,64 @@ const productsCPU = [
 ]
 let divProduct = document.getElementById("main-section-2");
 let nameProduct = "";
-let productsS = "";
 let priceProduct2 = 0;
 let componentArray2 = [];
 let componentArray3 = [];
-let i;
-/* alert("Welcome to TecnoStore");
-alert("Here you can watch the best prices for components of PC in the market");
-nameProduct = prompt("First, what are you searching? AMD/Intel/Nvidia").toUpperCase();
-const namesHighBusiness = products.map((elementProcessors) => elementProcessors.nameS);
-const checkStock = products.map(elementProcessors => elementProcessors.stock); */ //Esto recorre el nombre de marcas de los products
-/* while(namesHighBusiness.indexOf(nameProduct) == -1){ */ /* Esto sirve para identificar si está o no en el arreglo 
-nameProduct = prompt("Again, what are you searching?").toUpperCase();
-}
-if (namesHighBusiness.indexOf(nameProduct)!=-1){
-    if (checkStock[namesHighBusiness.indexOf(nameProduct)] == true){
-        alert("Oh, great! We have components of this type");
-        if (namesHighBusiness[namesHighBusiness.indexOf(nameProduct)] == "AMD"){
-            AMD(); //Llamado a la función AMD
-        }
-        if (namesHighBusiness[namesHighBusiness.indexOf(nameProduct)] == "INTEL"){
-            Intel();
-        }
-    }
-    else{
-        alert("Sorry, we don't have components of this type. Comeback later :(");
-    } //Si es NVIDIA, se cancela
-}
-if (namesHighBusiness.indexOf(nameProduct) == "INTEL"){
-} */
-//createComponents();
-const x = new Date();
-alert("Thank you for visit TecnoStore in the day: "+x.getDate()+"/"+(x.getMonth()+1)+"/"+x.getFullYear()); //Genera una fecha en base a lo que quiero 
 CPUS();
-console.log(componentArray2);
+createComponents();
+
 let section1 = document.getElementById('main-section-1'); 
 let form = document.createElement('form');
 form.innerHTML = `
 <div>
 <div class="category-main">
-    <label for="">AMD</label>
-    <input type="radio" name="asd" id="" category="AMD" class="category-item">
+<label for="">AMD</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Intel</label>
-    <input type="radio" name="asd" id="" category="Intel" class="category-item">
+<label for="">Intel</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Gabinetes</label>
-    <input type="radio" name="asd" id="" category="Gabinetes" class="category-item">
+<label for="">Gabinetes</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Monitores</label>
-    <input type="radio" name="asd" id="" category="Monitores" class="category-item">
+<label for="">Monitores</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Placas de Video</label>
-    <input type="radio" name="asd" id="" category="GPU" class="category-item">
+<label for="">Placas de Video</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Ram</label>
-    <input type="radio" name="asd" id="" category="RAM" class="category-item">
+<label for="">Ram</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Discos</label>
-    <input type="radio" name="asd" id="" category="Discos" class="category-item">
+<label for="">Discos</label>
+<input type="radio" name="asd" id="">
 </div>
 <div class="category-main">
-    <label for="">Periféricos</label>
-    <input type="radio" name="asd" id="" category="Perifericos" class="category-item">
+<label for="">Periféricos</label>
+<input type="radio" name="asd" id=""">
 </div>
 <div class="div-a">
-    <button>APLICAR</button>
+<button>APLICAR</button>
 </div>
 </div>
 <div>
 <div>
-    <label for="">Importe mínimo</label>
-    <input type="range" min="0" max="100000">
+<label for="">Importe mínimo</label>
+<input type="range" min="0" max="100000">
 </div>
 <div>
-    <label for="">Importe máximo</label>
-    <input type="range" min="50000" max="200000">
+<label for="">Importe máximo</label>
+<input type="range" min="50000" max="200000">
 </div>
 <div class="div-a">
-    <button>APLICAR</button>
+<button>APLICAR</button>
 </div>
 </div>`
-
 section1.append(form);
-const Inputs = [
-    {inputName: "Intel"},
-    {inputName: "AMD"},
-    {inputName: "Gabinetes"},
-    {inputName: "Monitores"},
-    {inputName: "Placas de Video"},
-    {inputName: "Ram"},
-    {inputName: "Discos"},    
-    {inputName: "Periféricos"}
-]
-const Minimos = [
-    {minMax:"Importe Mínimo", min: "0", max:"100000"},
-    {minMax:"Importe Máximo", min: "50000", max:"200000"}
-]
-let componentArray4 = [];
-for (const Input of Inputs){
-    componentArray4.push(Input);
-}
-let s1 = form.firstElementChild.firstElementChild.firstElementChild.nextElementSibling;
-s1.addEventListener("click", funcion5);
-function funcion5(){
-    form.classList.add('blocked');
-    let producto;
-    for (let i = 0; i<productsCPU.length; i++){
-        producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
-        console.log(producto);
-        console.log(producto.lastChild.previousSibling.textContent);
-        if (producto.lastChild.previousSibling.textContent == "marcaIntel"){
-            producto.remove();
-            i--;
-        }
-    }
-}
-let s2 = form.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
-s2.addEventListener("click",funcion20);
-function funcion20(){
-    form.classList.add('blocked');
-    let producto;
-    for (let i = 0; i<productsCPU.length; i++){
-        producto = document.body.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.children[i];
-        console.log(producto);
-        console.log(producto.lastChild.previousSibling.textContent);
-        if (producto.lastChild.previousSibling.textContent == "marcaAMD"){
-        producto.remove();
-        i--;
-        }
-    }
-    
-}
-
-
-/*         console.log(componentArray2.filter(x => x.marca == "AMD"));
-               if(componentArray2.filter(x => x.marca == "AMD"),1){
-            if (x.marca == "AMD"){
-                producto.remove();
-            } */
+eliminarProducto();
