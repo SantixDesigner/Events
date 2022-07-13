@@ -205,4 +205,4 @@ form.innerHTML = `
 </div>
 </div>`
 section1.append(form);
-eliminarProducto();
+eliminarProducto(); //Ejecuta la función eliminarProducto, el cual, según si se presiona "AMD" o "Intel", se produce un cambio de eliminación de productos
