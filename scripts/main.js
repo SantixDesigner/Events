@@ -16,7 +16,7 @@ const newDom = (pricesS,namesProducts, pricesSN, a, divProduct, allNames, button
         let producto = document.createElement("div");
         producto.innerHTML = `<img src = "${enlace}">
         <h2>${productoS.nameS}</h2>
-        <span>prices: </span>
+        <span>price: </span>
         <span>${productoS.price}</span>
         <p class = "nodisplay">marca${productoS.marca}</p>`;
         a = document.createElement('button');
